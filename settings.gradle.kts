@@ -1,12 +1,14 @@
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		google()
+		mavenCentral()
+	}
 }
 
 include(
-    ":app",
-    ":depsconstraints"
+	":app",
+	":database",
+	":depsconstraints",
+	":model"
 )
