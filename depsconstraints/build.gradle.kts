@@ -7,6 +7,7 @@ val appCompat = "1.3.0"
 val coreKtx = "1.6.0"
 val coroutines = "1.5.1"
 val material = "1.4.0"
+val navigation = Versions.Navigation
 val kotlin = Versions.Kotlin
 val kotlinxSerialization = "1.2.2"
 val lifecycleRuntimeKtx = "2.3.1"
@@ -31,5 +32,9 @@ dependencies {
 
 		// kotlinx.serialization
 		api("${Libs.KotlinxSerializationJson}:$kotlinxSerialization")
+
+		// navigation component
+		api("${Libs.Navigation.FragmentKtx}:$navigation")
+		api("${Libs.Navigation.UiKtx}:$navigation")
 	}
 }

@@ -6,4 +6,5 @@ object Versions {
 
 	const val Kotlin = "1.5.21"
 	const val Room = "2.3.0"
+	const val Navigation = "2.3.5"
 }

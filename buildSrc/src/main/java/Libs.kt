@@ -14,5 +14,10 @@ object Libs {
 		const val Ktx = "androidx.room:room-ktx"
 	}
 
+	object Navigation {
+		const val FragmentKtx = "androidx.navigation:navigation-fragment-ktx"
+		const val UiKtx = "androidx.navigation:navigation-ui-ktx"
+	}
+
 	const val KotlinxSerializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json"
 }

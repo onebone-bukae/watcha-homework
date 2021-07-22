@@ -41,7 +41,7 @@ dependencies {
 	api(platform(project(":depsconstraints")))
 
 	implementation(project(":model"))
-	implementation(project(":database"))
+	// implementation(project(":database"))
 
 	implementation(Libs.KotlinStdlib)
 
@@ -51,6 +51,10 @@ dependencies {
 
 	// lifecycle
 	implementation(Libs.LifecycleRuntimeKtx)
+
+	// navigation component
+	implementation(Libs.Navigation.FragmentKtx)
+	implementation(Libs.Navigation.UiKtx)
 
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.3")
