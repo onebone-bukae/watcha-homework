@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Watcha Homework</string>
+
+    <string name="track_list">Tracks</string>
+    <string name="favorites_list">Favorites</string>
 </resources>
