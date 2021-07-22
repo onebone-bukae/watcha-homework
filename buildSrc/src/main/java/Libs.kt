@@ -28,4 +28,6 @@ object Libs {
 
 	const val Retrofit = "com.squareup.retrofit2:retrofit"
 	const val RetrofitJsonAdapter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter"
+
+	const val Paging = "androidx.paging:paging-runtime"
 }

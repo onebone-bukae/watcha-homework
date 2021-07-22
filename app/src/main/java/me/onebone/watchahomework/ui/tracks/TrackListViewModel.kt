@@ -2,19 +2,23 @@ package me.onebone.watchahomework.ui.tracks
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.shareIn
-import me.onebone.watchahomework.shared.usecase.GetTrackUseCase
+import me.onebone.watchahomework.shared.repository.TracksPagingSource
 import javax.inject.Inject
 
 @HiltViewModel
 class TrackListViewModel @Inject constructor(
-	private val getTrackUseCase: GetTrackUseCase
+	private val pagingSource: TracksPagingSource
 ): ViewModel() {
-	val tracks = flow {
-		val entries = getTrackUseCase.invoke()
-		emit(entries)
-	}.shareIn(viewModelScope, started = SharingStarted.WhileSubscribed(), replay = 1)
+	val tracks = Pager(
+		config = PagingConfig(
+			pageSize = 30, enablePlaceholders = false, initialLoadSize = 30
+		),
+		pagingSourceFactory = {
+			pagingSource
+		}
+	).flow.cachedIn(viewModelScope)
 }

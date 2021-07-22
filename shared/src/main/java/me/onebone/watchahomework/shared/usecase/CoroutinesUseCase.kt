@@ -3,12 +3,12 @@ package me.onebone.watchahomework.shared.usecase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-abstract class CoroutinesUseCase<T> {
-	suspend operator fun invoke(): Result<T> = withContext(Dispatchers.IO) {
+abstract class CoroutinesUseCase<P, T> {
+	suspend operator fun invoke(value: P): Result<T> = withContext(Dispatchers.IO) {
 		runCatching {
-			execute()
+			execute(value)
 		}
 	}
 
-	abstract suspend fun execute(): T
+	abstract suspend fun execute(value: P): T
 }

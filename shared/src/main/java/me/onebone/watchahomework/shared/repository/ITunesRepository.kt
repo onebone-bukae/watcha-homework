@@ -5,12 +5,12 @@ import me.onebone.watchahomework.shared.data.ITunesDataSource
 import javax.inject.Inject
 
 interface ITunesRepository {
-	suspend fun getTracks(): List<Track>
+	suspend fun getTracks(offset: Int, limit: Int): List<Track>
 }
 
 class ITunesRepositoryImpl @Inject constructor(
 	private val iTunesDataSource: ITunesDataSource
 ): ITunesRepository {
-	override suspend fun getTracks(): List<Track> =
-		iTunesDataSource.getTracks()
+	override suspend fun getTracks(offset: Int, limit: Int): List<Track> =
+		iTunesDataSource.getTracks(offset, limit)
 }

@@ -28,7 +28,7 @@ class TrackListFragment: Fragment() {
 		viewLifecycleOwner.lifecycleScope.launch {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
 				viewModel.tracks.collect {
-					// TODO
+
 				}
 			}
 		}

@@ -50,6 +50,7 @@ dependencies {
 	implementation(project(":shared"))
 
 	implementation(Libs.KotlinStdlib)
+	implementation(Libs.Coroutines)
 
 	implementation(Libs.CoreKtx)
 	implementation(Libs.AppCompat)
@@ -61,6 +62,9 @@ dependencies {
 	// navigation component
 	implementation(Libs.Navigation.FragmentKtx)
 	implementation(Libs.Navigation.UiKtx)
+
+	// paging library
+	implementation(Libs.Paging)
 
 	// hilt
 	implementation(Libs.Hilt.Android)

@@ -6,7 +6,9 @@ import javax.inject.Inject
 
 class GetTrackUseCase @Inject constructor(
 	private val repository: ITunesRepository
-): CoroutinesUseCase<List<Track>>() {
-	override suspend fun execute(): List<Track> =
-		repository.getTracks()
+): CoroutinesUseCase<GetTrackUseCase.PageData, List<Track>>() {
+	override suspend fun execute(value: PageData): List<Track> =
+		repository.getTracks(value.offset, value.limit)
+
+	data class PageData(val offset: Int, val limit: Int)
 }
