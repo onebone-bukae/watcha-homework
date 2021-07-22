@@ -17,4 +17,6 @@ dependencies {
 	implementation(Libs.KotlinStdlib)
 
 	implementation(Libs.KotlinxSerializationJson)
+
+	testImplementation("junit:junit:4.13.2")
 }
