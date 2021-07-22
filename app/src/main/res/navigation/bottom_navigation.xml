@@ -7,13 +7,13 @@
 
 	<fragment
 		android:id="@+id/fragment_track_list"
-		android:name="me.onebone.watchahomework.TrackListFragment"
+		android:name="me.onebone.watchahomework.ui.tracks.TrackListFragment"
 		android:label="@string/track_list"
 		tools:layout="@layout/fragment_track_list" />
 
 	<fragment
 		android:id="@+id/fragment_favorites_list"
-		android:name="me.onebone.watchahomework.FavoritesListFragment"
+		android:name="me.onebone.watchahomework.ui.favorites.FavoritesListFragment"
 		android:label="@string/favorites_list"
 		tools:layout="@layout/fragment_favorites_list" />
 
