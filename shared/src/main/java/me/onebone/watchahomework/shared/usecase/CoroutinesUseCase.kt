@@ -1,4 +1,4 @@
-package me.onebone.watchahomework.domain
+package me.onebone.watchahomework.shared.usecase
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

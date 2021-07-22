@@ -1,6 +1,8 @@
 plugins {
 	id("com.android.library")
 	kotlin("android")
+	kotlin("kapt")
+	id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -36,6 +38,7 @@ android {
 
 dependencies {
 	api(platform(project(":depsconstraints")))
+	kapt(platform(project(":depsconstraints")))
 
 	implementation(project(":model"))
 
@@ -44,6 +47,13 @@ dependencies {
 	implementation(Libs.CoreKtx)
 	implementation(Libs.AppCompat)
 	implementation(Libs.Material)
+
+	// hilt
+	implementation(Libs.Hilt.Android)
+	kapt(Libs.Hilt.Compiler)
+
+	// kotlinx.serialization
+	implementation(Libs.KotlinxSerializationJson)
 
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.3")

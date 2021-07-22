@@ -19,5 +19,10 @@ object Libs {
 		const val UiKtx = "androidx.navigation:navigation-ui-ktx"
 	}
 
+	object Hilt {
+		const val Android = "com.google.dagger:hilt-android"
+		const val Compiler = "com.google.dagger:hilt-android-compiler"
+	}
+
 	const val KotlinxSerializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json"
 }

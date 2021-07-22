@@ -6,6 +6,7 @@ val activityCompose = "1.3.0-rc02"
 val appCompat = "1.3.0"
 val coreKtx = "1.6.0"
 val coroutines = "1.5.1"
+val hilt = Versions.Hilt
 val material = "1.4.0"
 val navigation = Versions.Navigation
 val kotlin = Versions.Kotlin
@@ -36,5 +37,9 @@ dependencies {
 		// navigation component
 		api("${Libs.Navigation.FragmentKtx}:$navigation")
 		api("${Libs.Navigation.UiKtx}:$navigation")
+
+		// hilt
+		api("${Libs.Hilt.Android}:$hilt")
+		api("${Libs.Hilt.Compiler}:$hilt")
 	}
 }

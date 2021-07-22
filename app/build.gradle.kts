@@ -1,6 +1,8 @@
 plugins {
 	id("com.android.application")
 	kotlin("android")
+	kotlin("kapt")
+	id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -43,6 +45,7 @@ android {
 
 dependencies {
 	api(platform(project(":depsconstraints")))
+	kapt(platform(project(":depsconstraints")))
 
 	implementation(project(":shared"))
 
@@ -58,6 +61,10 @@ dependencies {
 	// navigation component
 	implementation(Libs.Navigation.FragmentKtx)
 	implementation(Libs.Navigation.UiKtx)
+
+	// hilt
+	implementation(Libs.Hilt.Android)
+	kapt(Libs.Hilt.Compiler)
 
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.3")
