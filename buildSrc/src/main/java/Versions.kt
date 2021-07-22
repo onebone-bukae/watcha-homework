@@ -1,5 +1,5 @@
 object Versions {
-	object Build {
+	object Sdk {
 		const val Target = 29
 		const val Min = 19
 	}

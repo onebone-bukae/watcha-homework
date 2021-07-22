@@ -10,5 +10,6 @@ include(
 	":app",
 	":database",
 	":depsconstraints",
-	":model"
+	":model",
+	":shared"
 )

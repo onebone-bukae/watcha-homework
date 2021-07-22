@@ -1,5 +1,5 @@
 plugins {
-	id("com.android.application")
+	id("com.android.library")
 	kotlin("android")
 }
 
@@ -8,16 +8,13 @@ android {
 	buildToolsVersion = "30.0.3"
 
 	defaultConfig {
-		applicationId = "me.onebone.watchahomework"
 		minSdk = Versions.Sdk.Min
 		targetSdk = Versions.Sdk.Target
 		versionCode = 1
 		versionName = "1.0"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-		vectorDrawables {
-			useSupportLibrary = true
-		}
+		consumerProguardFiles("consumer-rules.pro")
 	}
 
 	buildTypes {
@@ -32,10 +29,6 @@ android {
 		targetCompatibility = JavaVersion.VERSION_1_8
 	}
 
-	buildFeatures {
-		dataBinding = true
-	}
-
 	kotlinOptions {
 		jvmTarget = "1.8"
 	}
@@ -44,21 +37,10 @@ android {
 dependencies {
 	api(platform(project(":depsconstraints")))
 
-	implementation(project(":model"))
-	// implementation(project(":database"))
-
 	implementation(Libs.KotlinStdlib)
-
 	implementation(Libs.CoreKtx)
 	implementation(Libs.AppCompat)
 	implementation(Libs.Material)
-
-	// lifecycle
-	implementation(Libs.LifecycleRuntimeKtx)
-
-	// navigation component
-	implementation(Libs.Navigation.FragmentKtx)
-	implementation(Libs.Navigation.UiKtx)
 
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.3")
