@@ -44,8 +44,7 @@ android {
 dependencies {
 	api(platform(project(":depsconstraints")))
 
-	implementation(project(":model"))
-	// implementation(project(":database"))
+	implementation(project(":shared"))
 
 	implementation(Libs.KotlinStdlib)
 

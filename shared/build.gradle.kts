@@ -37,7 +37,10 @@ android {
 dependencies {
 	api(platform(project(":depsconstraints")))
 
+	implementation(project(":model"))
+
 	implementation(Libs.KotlinStdlib)
+	implementation(Libs.Coroutines)
 	implementation(Libs.CoreKtx)
 	implementation(Libs.AppCompat)
 	implementation(Libs.Material)
