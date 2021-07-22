@@ -12,6 +12,8 @@ val navigation = Versions.Navigation
 val kotlin = Versions.Kotlin
 val kotlinxSerialization = "1.2.2"
 val lifecycleRuntimeKtx = "2.3.1"
+val retrofit = "2.9.0"
+val retrofitJsonAdapter = "0.8.0"
 val room = Versions.Room
 
 dependencies {
@@ -41,5 +43,9 @@ dependencies {
 		// hilt
 		api("${Libs.Hilt.Android}:$hilt")
 		api("${Libs.Hilt.Compiler}:$hilt")
+
+		// retrofit
+		api("${Libs.Retrofit}:$retrofit")
+		api("${Libs.RetrofitJsonAdapter}:$retrofitJsonAdapter")
 	}
 }

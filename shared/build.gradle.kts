@@ -2,6 +2,7 @@ plugins {
 	id("com.android.library")
 	kotlin("android")
 	kotlin("kapt")
+	kotlin("plugin.serialization") version Versions.Kotlin
 	id("dagger.hilt.android.plugin")
 }
 
@@ -17,6 +18,8 @@ android {
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 		consumerProguardFiles("consumer-rules.pro")
+
+		buildConfigField("String", "ITUNES_API_BASE_URL", "\"https://itunes.apple.com/\"")
 	}
 
 	buildTypes {
@@ -33,6 +36,7 @@ android {
 
 	kotlinOptions {
 		jvmTarget = "1.8"
+		freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
 	}
 }
 
@@ -54,6 +58,10 @@ dependencies {
 
 	// kotlinx.serialization
 	implementation(Libs.KotlinxSerializationJson)
+
+	// retrofit
+	implementation(Libs.Retrofit)
+	implementation(Libs.RetrofitJsonAdapter)
 
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.3")

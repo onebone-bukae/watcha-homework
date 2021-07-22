@@ -7,8 +7,13 @@ interface ITunesDataSource {
 	suspend fun getTracks(): List<Track>
 }
 
-class NetworkITunesDataSource @Inject constructor(): ITunesDataSource {
+class NetworkITunesDataSource @Inject constructor(
+	private val service: ITunesService
+): ITunesDataSource {
 	override suspend fun getTracks(): List<Track> {
-		TODO("Not yet implemented")
+		// search using default query parameters
+		val response = service.search()
+
+		return response.results
 	}
 }
