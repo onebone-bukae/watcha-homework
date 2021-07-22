@@ -23,9 +23,13 @@ class TracksPagingSource @Inject constructor(
 		return LoadResult.Page(
 			data = tracks,
 			// is this right prevKey?
-			prevKey = (offset - limit).coerceAtLeast(0),
+			prevKey = (offset - limit)
+				.coerceAtLeast(0)
+				.takeIf {
+					it < offset
+				},
 			// confirmation required: end of page if the list is smaller than the requested limit?
-			nextKey = if(tracks.size < limit) null else offset + limit,
+			nextKey = if(tracks.size < limit) null else offset + limit
 		)
 	}
 }

@@ -11,7 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -21,6 +23,7 @@ import me.onebone.watchahomework.databinding.FragmentTrackListBinding
 class TrackListFragment: Fragment() {
 	private val viewModel by viewModels<TrackListViewModel>()
 
+	@OptIn(FlowPreview::class)
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -42,6 +45,9 @@ class TrackListFragment: Fragment() {
 
 				launch {
 					adapter.loadStateFlow
+						// too frequent change in progress bar's visibility
+						// may annoy the user!
+						.debounce(300)
 						.map {
 							it.refresh is LoadState.Loading || it.append is LoadState.Loading
 						}
