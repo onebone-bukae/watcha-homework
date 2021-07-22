@@ -1,5 +1,5 @@
 object Libs {
-	const val KotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+	const val KotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib"
 	const val Coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
 
 	const val CoreKtx = "androidx.core:core-ktx"
