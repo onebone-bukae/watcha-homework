@@ -9,8 +9,8 @@ android {
 	buildToolsVersion = "30.0.3"
 
 	defaultConfig {
-		minSdk = 21
-		targetSdk = 30
+		minSdk = Versions.Build.Min
+		targetSdk = Versions.Build.Target
 		version = "1.0"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
