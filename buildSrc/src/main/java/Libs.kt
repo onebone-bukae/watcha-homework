@@ -30,4 +30,6 @@ object Libs {
 	const val RetrofitJsonAdapter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter"
 
 	const val Paging = "androidx.paging:paging-runtime"
+
+	const val Glide = "com.github.bumptech.glide:glide"
 }

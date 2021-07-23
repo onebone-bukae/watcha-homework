@@ -67,6 +67,9 @@ dependencies {
 	// paging library
 	implementation(Libs.Paging)
 
+	// glide
+	implementation(Libs.Glide)
+
 	// hilt
 	implementation(Libs.Hilt.Android)
 	kapt(Libs.Hilt.Compiler)

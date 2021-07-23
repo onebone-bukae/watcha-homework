@@ -15,12 +15,13 @@
 
 		<ImageView
 			android:id="@+id/img_artwork"
-			android:layout_width="wrap_content"
-			android:layout_height="0dp"
+			android:layout_width="80dp"
+			android:layout_height="80dp"
 			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			tools:ignore="ContentDescription" />
+			tools:ignore="ContentDescription"
+			app:srcUri="@{entry.track.artworkUrl100}" />
 
 		<TextView
 			android:id="@+id/tv_collection"
@@ -29,7 +30,7 @@
 			app:layout_constraintStart_toEndOf="@id/img_artwork"
 			app:layout_constraintTop_toTopOf="parent"
 			android:text="@{entry.track.collectionName}"
-			tools:text="Collection"/>
+			tools:text="Collection" />
 
 		<TextView
 			android:id="@+id/tv_title"
