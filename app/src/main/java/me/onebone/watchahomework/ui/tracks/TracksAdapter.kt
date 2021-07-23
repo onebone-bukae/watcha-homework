@@ -1,11 +1,11 @@
 package me.onebone.watchahomework.ui.tracks
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.setPadding
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import me.onebone.watchahomework.databinding.ItemTrackEntryBinding
 import me.onebone.watchahomework.shared.repository.TracksPagingSource
 
 class TracksAdapter: PagingDataAdapter<TracksPagingSource.TrackAndFavorite, TracksAdapter.ViewHolder>(
@@ -21,13 +21,15 @@ class TracksAdapter: PagingDataAdapter<TracksPagingSource.TrackAndFavorite, Trac
 		): Boolean = oldItem == newItem
 	}
 ) {
-	inner class ViewHolder(private val textView: TextView): RecyclerView.ViewHolder(textView) {
-		fun bind(track: TracksPagingSource.TrackAndFavorite?) {
+	inner class ViewHolder(
+		private val binding: ItemTrackEntryBinding
+	): RecyclerView.ViewHolder(binding.root) {
+		fun bind(entry: TracksPagingSource.TrackAndFavorite?) {
 			// null may come in for displaying placeholder (i.e. loading state),
 			// however, placeholder is disabled in paging configuration so we just skip the null values
-			if(track == null) return
+			if(entry == null) return
 
-			textView.text = track.track.trackName
+			binding.entry = entry
 		}
 	}
 
@@ -36,14 +38,8 @@ class TracksAdapter: PagingDataAdapter<TracksPagingSource.TrackAndFavorite, Trac
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-		// TODO temporary layout
-		return ViewHolder(TextView(parent.context).apply {
-			layoutParams = ViewGroup.LayoutParams(
-				ViewGroup.LayoutParams.MATCH_PARENT,
-				ViewGroup.LayoutParams.WRAP_CONTENT
-			)
-
-			setPadding(80)
-		})
+		return ViewHolder(ItemTrackEntryBinding.inflate(
+			LayoutInflater.from(parent.context), parent, false
+		))
 	}
 }
