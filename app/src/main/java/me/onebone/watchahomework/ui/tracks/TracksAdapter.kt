@@ -18,7 +18,7 @@ class TracksAdapter: PagingDataAdapter<Track, TracksAdapter.ViewHolder>(
 	inner class ViewHolder(private val textView: TextView): RecyclerView.ViewHolder(textView) {
 		fun bind(track: Track?) {
 			// null may come in for displaying placeholder (i.e. loading state),
-			// however, placeholder is set off in paging configuration so we just skip the null values
+			// however, placeholder is disabled in paging configuration so we just skip the null values
 			if(track == null) return
 
 			textView.text = track.trackName

@@ -18,7 +18,7 @@ class TracksPagingSource @Inject constructor(
 
 		val result = getTrackUseCase.invoke(GetTrackUseCase.PageData(offset, limit))
 
-		val tracks = result.getOrNull() ?: return LoadResult.Error(result.exceptionOrNull()!!)
+		val tracks = result.getOrElse { return LoadResult.Error(it) }
 
 		return LoadResult.Page(
 			data = tracks,
