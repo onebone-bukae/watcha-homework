@@ -1,6 +1,6 @@
 package me.onebone.watchahomework.shared.data
 
-import me.onebone.watchahomework.shared.data.response.SearchResultResponse
+import me.onebone.watchahomework.model.response.SearchResultResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

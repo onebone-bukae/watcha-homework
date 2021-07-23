@@ -1,4 +1,4 @@
-package me.onebone.watchahomework.shared.data.response
+package me.onebone.watchahomework.model.response
 
 import kotlinx.serialization.Serializable
 import me.onebone.watchahomework.model.Track

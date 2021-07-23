@@ -29,7 +29,7 @@ class TracksPagingSource @Inject constructor(
 					it < offset
 				},
 			// confirmation required: end of page if the list is smaller than the requested limit?
-			nextKey = if(tracks.size < limit) null else offset + limit
+			nextKey = if(tracks.size < limit) null else offset + tracks.size
 		)
 	}
 }
