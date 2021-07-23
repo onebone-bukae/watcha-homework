@@ -2,13 +2,16 @@ package me.onebone.watchahomework.ui.tracks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.RatingBar
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.onebone.watchahomework.databinding.ItemTrackEntryBinding
 import me.onebone.watchahomework.shared.repository.TracksPagingSource
 
-class TracksAdapter: PagingDataAdapter<TracksPagingSource.TrackAndFavorite, TracksAdapter.ViewHolder>(
+class TracksAdapter(
+	private val onStarToggled: (TracksPagingSource.TrackAndFavorite, Boolean) -> Unit
+): PagingDataAdapter<TracksPagingSource.TrackAndFavorite, TracksAdapter.ViewHolder>(
 	diffCallback = object: DiffUtil.ItemCallback<TracksPagingSource.TrackAndFavorite>() {
 		override fun areItemsTheSame(
 			oldItem: TracksPagingSource.TrackAndFavorite,
@@ -30,6 +33,10 @@ class TracksAdapter: PagingDataAdapter<TracksPagingSource.TrackAndFavorite, Trac
 			if(entry == null) return
 
 			binding.entry = entry
+
+			binding.rbStar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { _, v, _ ->
+				onStarToggled(entry, v == 1f)
+			}
 		}
 	}
 

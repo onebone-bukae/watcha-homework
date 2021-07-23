@@ -50,5 +50,15 @@
 			android:text="@{entry.track.artistName}"
 			tools:text="Artist" />
 
+		<RatingBar
+			android:id="@+id/rb_star"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			android:rating="@{entry.favorite ? 1 : 0}"
+			android:numStars="1" />
+
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -8,6 +8,8 @@ import javax.inject.Inject
 
 interface FavoritesDataSource {
 	suspend fun isFavorite(track: Track): Boolean
+
+	suspend fun addFavorite(track: Track)
 }
 
 class RoomFavoritesDataSource @Inject constructor(
@@ -15,6 +17,10 @@ class RoomFavoritesDataSource @Inject constructor(
 ): FavoritesDataSource {
 	override suspend fun isFavorite(track: Track): Boolean {
 		return favoritesDao.exists(track.toEntity())
+	}
+
+	override suspend fun addFavorite(track: Track) {
+		favoritesDao.insert(track.toEntity())
 	}
 }
 

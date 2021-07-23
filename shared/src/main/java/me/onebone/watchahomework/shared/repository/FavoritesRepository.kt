@@ -6,6 +6,8 @@ import javax.inject.Inject
 
 interface FavoritesRepository {
 	suspend fun isFavorite(track: Track): Boolean
+
+	suspend fun addFavorite(track: Track)
 }
 
 class FavoritesRepositoryImpl @Inject constructor(
@@ -13,4 +15,7 @@ class FavoritesRepositoryImpl @Inject constructor(
 ): FavoritesRepository {
 	override suspend fun isFavorite(track: Track): Boolean =
 		source.isFavorite(track)
+
+	override suspend fun addFavorite(track: Track) =
+		source.addFavorite(track)
 }
