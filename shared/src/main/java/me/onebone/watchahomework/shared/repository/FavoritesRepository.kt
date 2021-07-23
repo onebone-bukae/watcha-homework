@@ -8,6 +8,8 @@ interface FavoritesRepository {
 	suspend fun isFavorite(track: Track): Boolean
 
 	suspend fun addFavorite(track: Track)
+
+	suspend fun removeFavorite(track: Track)
 }
 
 class FavoritesRepositoryImpl @Inject constructor(
@@ -18,4 +20,7 @@ class FavoritesRepositoryImpl @Inject constructor(
 
 	override suspend fun addFavorite(track: Track) =
 		source.addFavorite(track)
+
+	override suspend fun removeFavorite(track: Track) =
+		source.removeFavorite(track)
 }

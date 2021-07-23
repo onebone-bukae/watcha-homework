@@ -36,8 +36,9 @@ class TrackListFragment: Fragment() {
 			onStarToggled = { entry, newValue ->
 				if(newValue) {
 					viewModel.addFavorite(entry.track)
+				}else{
+					viewModel.removeFavorite(entry.track)
 				}
-				// TODO remove from favorites
 			}
 		)
 		binding.rvTracks.adapter = adapter

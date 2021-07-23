@@ -10,6 +10,8 @@ interface FavoritesDataSource {
 	suspend fun isFavorite(track: Track): Boolean
 
 	suspend fun addFavorite(track: Track)
+
+	suspend fun removeFavorite(track: Track)
 }
 
 class RoomFavoritesDataSource @Inject constructor(
@@ -21,6 +23,10 @@ class RoomFavoritesDataSource @Inject constructor(
 
 	override suspend fun addFavorite(track: Track) {
 		favoritesDao.insert(track.toEntity())
+	}
+
+	override suspend fun removeFavorite(track: Track) {
+		favoritesDao.delete(track.toEntity())
 	}
 }
 
