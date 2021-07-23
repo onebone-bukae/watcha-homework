@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
+import androidx.paging.map
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
@@ -18,6 +19,9 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import me.onebone.watchahomework.databinding.FragmentTrackListBinding
+import me.onebone.watchahomework.ui.TracksAdapter
+import me.onebone.watchahomework.ui.toEntity
+import me.onebone.watchahomework.ui.toEntry
 
 @AndroidEntryPoint
 class TrackListFragment: Fragment() {
@@ -35,9 +39,9 @@ class TrackListFragment: Fragment() {
 		val adapter = TracksAdapter(
 			onStarToggled = { entry, newValue ->
 				if(newValue) {
-					viewModel.addFavorite(entry.track)
+					viewModel.addFavorite(entry.toEntity())
 				}else{
-					viewModel.removeFavorite(entry.track)
+					viewModel.removeFavorite(entry.toEntity())
 				}
 			}
 		)
@@ -47,7 +51,9 @@ class TrackListFragment: Fragment() {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
 				launch {
 					viewModel.tracks.collect {
-						adapter.submitData(it)
+						adapter.submitData(it.map { composite ->
+							composite.toEntry()
+						})
 					}
 				}
 

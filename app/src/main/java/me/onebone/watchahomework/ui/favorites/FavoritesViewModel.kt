@@ -6,12 +6,16 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import me.onebone.watchahomework.database.TrackEntity
 import me.onebone.watchahomework.shared.repository.FavoritesPagingSourceFactory
+import me.onebone.watchahomework.shared.usecase.RemoveFavoriteUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
-	pagingSourceFactory: FavoritesPagingSourceFactory
+	pagingSourceFactory: FavoritesPagingSourceFactory,
+	private val removeFavoriteUseCase: RemoveFavoriteUseCase
 ): ViewModel() {
 	val favorites = Pager(
 		config = PagingConfig(pageSize = 30, enablePlaceholders = false),
@@ -19,4 +23,10 @@ class FavoritesViewModel @Inject constructor(
 			pagingSourceFactory.create()
 		}
 	).flow.cachedIn(viewModelScope)
+
+	fun removeFavorite(entity: TrackEntity) {
+		viewModelScope.launch {
+			removeFavoriteUseCase(entity)
+		}
+	}
 }

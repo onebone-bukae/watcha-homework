@@ -1,4 +1,4 @@
-package me.onebone.watchahomework.ui.tracks
+package me.onebone.watchahomework.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,27 +7,24 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.onebone.watchahomework.databinding.ItemTrackEntryBinding
-import me.onebone.watchahomework.shared.repository.TracksPagingSource
 
 class TracksAdapter(
-	private val onStarToggled: (TracksPagingSource.TrackAndFavorite, Boolean) -> Unit
-): PagingDataAdapter<TracksPagingSource.TrackAndFavorite, TracksAdapter.ViewHolder>(
-	diffCallback = object: DiffUtil.ItemCallback<TracksPagingSource.TrackAndFavorite>() {
+	private val onStarToggled: TracksAdapter.(TrackEntry, Boolean) -> Unit
+): PagingDataAdapter<TrackEntry, TracksAdapter.ViewHolder>(
+	diffCallback = object: DiffUtil.ItemCallback<TrackEntry>() {
 		override fun areItemsTheSame(
-			oldItem: TracksPagingSource.TrackAndFavorite,
-			newItem: TracksPagingSource.TrackAndFavorite
+			oldItem: TrackEntry, newItem: TrackEntry
 		): Boolean = oldItem == newItem
 
 		override fun areContentsTheSame(
-			oldItem: TracksPagingSource.TrackAndFavorite,
-			newItem: TracksPagingSource.TrackAndFavorite
+			oldItem: TrackEntry, newItem: TrackEntry
 		): Boolean = oldItem == newItem
 	}
 ) {
 	inner class ViewHolder(
 		private val binding: ItemTrackEntryBinding
 	): RecyclerView.ViewHolder(binding.root) {
-		fun bind(entry: TracksPagingSource.TrackAndFavorite?) {
+		fun bind(entry: TrackEntry?) {
 			// null may come in for displaying placeholder (i.e. loading state),
 			// however, placeholder is disabled in paging configuration so we just skip the null values
 			if(entry == null) return

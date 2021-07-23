@@ -9,10 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.map
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import me.onebone.watchahomework.databinding.FragmentFavoritesListBinding
+import me.onebone.watchahomework.ui.TracksAdapter
+import me.onebone.watchahomework.ui.toEntity
+import me.onebone.watchahomework.ui.toEntry
 
 @AndroidEntryPoint
 class FavoritesListFragment: Fragment() {
@@ -26,14 +30,22 @@ class FavoritesListFragment: Fragment() {
 		val binding = FragmentFavoritesListBinding.inflate(inflater, container, false)
 		binding.lifecycleOwner = viewLifecycleOwner
 
-		val adapter = FavoritesAdapter()
+		val adapter = TracksAdapter(
+			onStarToggled = { entry, isFavorite ->
+				if(!isFavorite) {
+					viewModel.removeFavorite(entry.toEntity())
+				}
+			}
+		)
 
 		binding.rvFavorites.adapter = adapter
 
 		viewLifecycleOwner.lifecycleScope.launch {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
 				viewModel.favorites.collect {
-					adapter.submitData(it)
+					adapter.submitData(it.map { entity ->
+						entity.toEntry(true)
+					})
 				}
 			}
 		}
