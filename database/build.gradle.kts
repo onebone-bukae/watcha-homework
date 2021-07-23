@@ -42,8 +42,8 @@ dependencies {
 
 	// room
 	kapt(Libs.Room.Compiler)
-	implementation(Libs.Room.Runtime)
-	implementation(Libs.Room.Ktx)
+	api(Libs.Room.Runtime)
+	api(Libs.Room.Ktx)
 
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.3")

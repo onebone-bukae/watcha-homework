@@ -32,7 +32,15 @@ class TrackListFragment: Fragment() {
 		val binding = FragmentTrackListBinding.inflate(inflater, container, false)
 		binding.lifecycleOwner = viewLifecycleOwner
 
-		val adapter = TracksAdapter()
+		val adapter = TracksAdapter(
+			onStarToggled = { entry, newValue ->
+				if(newValue) {
+					viewModel.addFavorite(entry.track)
+				}else{
+					viewModel.removeFavorite(entry.track)
+				}
+			}
+		)
 		binding.rvTracks.adapter = adapter
 
 		viewLifecycleOwner.lifecycleScope.launch {
