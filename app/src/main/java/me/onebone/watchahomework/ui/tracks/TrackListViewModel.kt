@@ -8,14 +8,14 @@ import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import me.onebone.watchahomework.database.TrackEntity
-import me.onebone.watchahomework.shared.repository.TracksPagingSource
+import me.onebone.watchahomework.shared.repository.TracksPagingSourceFactory
 import me.onebone.watchahomework.shared.usecase.AddFavoriteUseCase
 import me.onebone.watchahomework.shared.usecase.RemoveFavoriteUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class TrackListViewModel @Inject constructor(
-	private val pagingSource: TracksPagingSource,
+	private val pagingSourceFactory: TracksPagingSourceFactory,
 	private val addFavoriteUseCase: AddFavoriteUseCase,
 	private val removeFavoriteUseCase: RemoveFavoriteUseCase
 ): ViewModel() {
@@ -24,8 +24,7 @@ class TrackListViewModel @Inject constructor(
 			pageSize = 30, enablePlaceholders = false, initialLoadSize = 30
 		),
 		pagingSourceFactory = {
-			// TODO create new instance
-			pagingSource
+			pagingSourceFactory.create()
 		}
 	).flow.cachedIn(viewModelScope)
 

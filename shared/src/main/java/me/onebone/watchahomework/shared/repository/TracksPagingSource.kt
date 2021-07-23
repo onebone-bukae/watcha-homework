@@ -63,3 +63,15 @@ class TracksPagingSource @Inject constructor(
 		var isFavorite: Boolean
 	)
 }
+
+fun interface TracksPagingSourceFactory {
+	fun create(): TracksPagingSource
+}
+
+class TracksPagingSourceFactoryImpl @Inject constructor(
+	private val getTrackUseCase: GetTrackUseCase,
+	private val isFavoriteUseCase: IsFavoriteUseCase
+): TracksPagingSourceFactory {
+	override fun create(): TracksPagingSource =
+		TracksPagingSource(getTrackUseCase, isFavoriteUseCase)
+}
