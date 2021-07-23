@@ -8,7 +8,11 @@ import javax.inject.Inject
 class FavoritesPagingSource @Inject constructor(
 	repository: FavoritesRepository
 ): PagingSource<Int, TrackEntity>() {
-	private val source by lazy { repository.getAllPaged() }
+	private val source by lazy {
+		repository.getAllPaged().apply {
+			registerInvalidatedCallback { this@FavoritesPagingSource.invalidate() }
+		}
+	}
 
 	override fun getRefreshKey(state: PagingState<Int, TrackEntity>): Int? =
 		source.getRefreshKey(state)

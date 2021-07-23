@@ -7,7 +7,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import me.onebone.watchahomework.model.Track
+import me.onebone.watchahomework.database.TrackEntity
 import me.onebone.watchahomework.shared.repository.TracksPagingSource
 import me.onebone.watchahomework.shared.usecase.AddFavoriteUseCase
 import me.onebone.watchahomework.shared.usecase.RemoveFavoriteUseCase
@@ -29,14 +29,14 @@ class TrackListViewModel @Inject constructor(
 		}
 	).flow.cachedIn(viewModelScope)
 
-	fun addFavorite(track: Track) {
+	fun addFavorite(track: TrackEntity) {
 		// FIXME what if viewModelScope cancels before the use case completes its job?
 		viewModelScope.launch {
 			addFavoriteUseCase(track)
 		}
 	}
 
-	fun removeFavorite(track: Track) {
+	fun removeFavorite(track: TrackEntity) {
 		viewModelScope.launch {
 			removeFavoriteUseCase(track)
 		}

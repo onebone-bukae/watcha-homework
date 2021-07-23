@@ -5,9 +5,10 @@ import androidx.paging.PagingState
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import me.onebone.watchahomework.model.Track
+import me.onebone.watchahomework.database.TrackEntity
 import me.onebone.watchahomework.shared.usecase.GetTrackUseCase
 import me.onebone.watchahomework.shared.usecase.IsFavoriteUseCase
+import me.onebone.watchahomework.shared.util.toEntity
 import javax.inject.Inject
 
 class TracksPagingSource @Inject constructor(
@@ -29,10 +30,10 @@ class TracksPagingSource @Inject constructor(
 			coroutineScope {
 				tracks.map {
 					async {
-						val isFavoriteResult = isFavoriteUseCase.invoke(it)
+						val isFavoriteResult = isFavoriteUseCase.invoke(it.toEntity())
 
 						TrackAndFavorite(
-							track = it,
+							track = it.toEntity(),
 							isFavorite = isFavoriteResult.getOrThrow()
 						)
 					}
@@ -55,7 +56,7 @@ class TracksPagingSource @Inject constructor(
 	}
 
 	data class TrackAndFavorite(
-		val track: Track,
+		val track: TrackEntity,
 		// PagingDataAdapter does not allow us to replace list entry instance,
 		// we should mark this as a mutable field to make the change visible to the user.
 		// Consider using observable read query provided by Room.
