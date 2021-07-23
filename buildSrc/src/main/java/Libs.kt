@@ -12,6 +12,7 @@ object Libs {
 		const val Runtime = "androidx.room:room-runtime"
 		const val Compiler = "androidx.room:room-compiler"
 		const val Ktx = "androidx.room:room-ktx"
+		const val Paging = "androidx.room:room-paging"
 	}
 
 	object Navigation {

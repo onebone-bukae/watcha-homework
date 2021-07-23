@@ -88,6 +88,7 @@
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			android:rating="@{entry.favorite ? 1 : 0}"
+			android:stepSize="1"
 			android:numStars="1" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>

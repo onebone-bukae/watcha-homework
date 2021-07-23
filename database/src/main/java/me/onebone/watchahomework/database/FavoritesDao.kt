@@ -1,5 +1,6 @@
 package me.onebone.watchahomework.database
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -22,6 +23,9 @@ interface FavoritesDao {
 		artistName: String,
 		collectionName: String
 	): TrackEntity?
+
+	@Query("SELECT * FROM TrackEntity")
+	fun pagedAll(): PagingSource<Int, TrackEntity>
 }
 
 suspend fun FavoritesDao.exists(track: TrackEntity): Boolean =

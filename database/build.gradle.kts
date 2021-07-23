@@ -44,6 +44,9 @@ dependencies {
 	kapt(Libs.Room.Compiler)
 	api(Libs.Room.Runtime)
 	api(Libs.Room.Ktx)
+	implementation(Libs.Room.Paging)
+
+	api(Libs.Paging)
 
 	testImplementation("junit:junit:4.13.2")
 	androidTestImplementation("androidx.test.ext:junit:1.1.3")

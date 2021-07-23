@@ -1,5 +1,7 @@
 package me.onebone.watchahomework.shared.repository
 
+import androidx.paging.PagingSource
+import me.onebone.watchahomework.database.TrackEntity
 import me.onebone.watchahomework.model.Track
 import me.onebone.watchahomework.shared.data.FavoritesDataSource
 import javax.inject.Inject
@@ -10,6 +12,8 @@ interface FavoritesRepository {
 	suspend fun addFavorite(track: Track)
 
 	suspend fun removeFavorite(track: Track)
+
+	fun getAllPaged(): PagingSource<Int, TrackEntity>
 }
 
 class FavoritesRepositoryImpl @Inject constructor(
@@ -23,4 +27,7 @@ class FavoritesRepositoryImpl @Inject constructor(
 
 	override suspend fun removeFavorite(track: Track) =
 		source.removeFavorite(track)
+
+	override fun getAllPaged(): PagingSource<Int, TrackEntity> =
+		source.getAllPaged()
 }

@@ -16,6 +16,7 @@ val paging = "3.0.1"
 val retrofit = "2.9.0"
 val retrofitJsonAdapter = "0.8.0"
 val room = Versions.Room
+val roomPaging = "2.4.0-alpha04"
 
 dependencies {
 	constraints {
@@ -33,6 +34,7 @@ dependencies {
 		api("${Libs.Room.Compiler}:$room")
 		api("${Libs.Room.Runtime}:$room")
 		api("${Libs.Room.Ktx}:$room")
+		api("${Libs.Room.Paging}:$roomPaging")
 
 		// kotlinx.serialization
 		api("${Libs.KotlinxSerializationJson}:$kotlinxSerialization")

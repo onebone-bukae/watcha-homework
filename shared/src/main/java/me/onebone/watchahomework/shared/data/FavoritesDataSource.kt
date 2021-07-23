@@ -1,5 +1,6 @@
 package me.onebone.watchahomework.shared.data
 
+import androidx.paging.PagingSource
 import me.onebone.watchahomework.database.FavoritesDao
 import me.onebone.watchahomework.database.TrackEntity
 import me.onebone.watchahomework.database.exists
@@ -12,6 +13,8 @@ interface FavoritesDataSource {
 	suspend fun addFavorite(track: Track)
 
 	suspend fun removeFavorite(track: Track)
+
+	fun getAllPaged(): PagingSource<Int, TrackEntity>
 }
 
 class RoomFavoritesDataSource @Inject constructor(
@@ -27,6 +30,10 @@ class RoomFavoritesDataSource @Inject constructor(
 
 	override suspend fun removeFavorite(track: Track) {
 		favoritesDao.delete(track.toEntity())
+	}
+
+	override fun getAllPaged(): PagingSource<Int, TrackEntity> {
+		return favoritesDao.pagedAll()
 	}
 }
 
