@@ -35,7 +35,13 @@ class TracksAdapter(
 			binding.entry = entry
 
 			binding.rbStar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { _, v, _ ->
-				onStarToggled(entry, v == 1f)
+				val isFavorite = v == 1f
+
+				onStarToggled(entry, isFavorite)
+
+				// better idea?? possibly using flow?
+				// Room seems to support observable read queries for this purpose
+				entry.isFavorite = isFavorite
 			}
 		}
 	}

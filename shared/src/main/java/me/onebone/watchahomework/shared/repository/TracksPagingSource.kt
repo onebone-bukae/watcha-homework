@@ -56,6 +56,9 @@ class TracksPagingSource @Inject constructor(
 
 	data class TrackAndFavorite(
 		val track: Track,
-		val isFavorite: Boolean
+		// PagingDataAdapter does not allow us to replace list entry instance,
+		// we should mark this as a mutable field to make the change visible to the user.
+		// Consider using observable read query provided by Room.
+		var isFavorite: Boolean
 	)
 }
