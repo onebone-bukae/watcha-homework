@@ -9,9 +9,13 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import me.onebone.watchahomework.shared.BuildConfig
+import me.onebone.watchahomework.shared.data.FavoritesDataSource
 import me.onebone.watchahomework.shared.data.ITunesDataSource
 import me.onebone.watchahomework.shared.data.ITunesService
 import me.onebone.watchahomework.shared.data.NetworkITunesDataSource
+import me.onebone.watchahomework.shared.data.RoomFavoritesDataSource
+import me.onebone.watchahomework.shared.repository.FavoritesRepository
+import me.onebone.watchahomework.shared.repository.FavoritesRepositoryImpl
 import me.onebone.watchahomework.shared.repository.ITunesRepository
 import me.onebone.watchahomework.shared.repository.ITunesRepositoryImpl
 import okhttp3.MediaType
@@ -55,9 +59,17 @@ object NetworkModule {
 abstract class NetworkBindsModule {
 	@Binds
 	@Singleton
-	abstract fun bindsITunesDataSource(dataSource: NetworkITunesDataSource): ITunesDataSource
+	abstract fun bindITunesDataSource(dataSource: NetworkITunesDataSource): ITunesDataSource
 
 	@Binds
 	@Singleton
-	abstract fun bindsITunesRepository(repository: ITunesRepositoryImpl): ITunesRepository
+	abstract fun bindITunesRepository(repository: ITunesRepositoryImpl): ITunesRepository
+
+	@Binds
+	@Singleton
+	abstract fun bindFavoritesDataSource(dataSource: RoomFavoritesDataSource): FavoritesDataSource
+
+	@Binds
+	@Singleton
+	abstract fun bindFavoritesRepository(repository: FavoritesRepositoryImpl): FavoritesRepository
 }

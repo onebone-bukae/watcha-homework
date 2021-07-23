@@ -6,22 +6,28 @@ import androidx.core.view.setPadding
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import me.onebone.watchahomework.model.Track
+import me.onebone.watchahomework.shared.repository.TracksPagingSource
 
-class TracksAdapter: PagingDataAdapter<Track, TracksAdapter.ViewHolder>(
-	diffCallback = object: DiffUtil.ItemCallback<Track>() {
-		override fun areItemsTheSame(oldItem: Track, newItem: Track): Boolean = oldItem == newItem
+class TracksAdapter: PagingDataAdapter<TracksPagingSource.TrackAndFavorite, TracksAdapter.ViewHolder>(
+	diffCallback = object: DiffUtil.ItemCallback<TracksPagingSource.TrackAndFavorite>() {
+		override fun areItemsTheSame(
+			oldItem: TracksPagingSource.TrackAndFavorite,
+			newItem: TracksPagingSource.TrackAndFavorite
+		): Boolean = oldItem == newItem
 
-		override fun areContentsTheSame(oldItem: Track, newItem: Track): Boolean = oldItem == newItem
+		override fun areContentsTheSame(
+			oldItem: TracksPagingSource.TrackAndFavorite,
+			newItem: TracksPagingSource.TrackAndFavorite
+		): Boolean = oldItem == newItem
 	}
 ) {
 	inner class ViewHolder(private val textView: TextView): RecyclerView.ViewHolder(textView) {
-		fun bind(track: Track?) {
+		fun bind(track: TracksPagingSource.TrackAndFavorite?) {
 			// null may come in for displaying placeholder (i.e. loading state),
 			// however, placeholder is disabled in paging configuration so we just skip the null values
 			if(track == null) return
 
-			textView.text = track.trackName
+			textView.text = track.track.trackName
 		}
 	}
 

@@ -44,6 +44,7 @@ dependencies {
 	kapt(platform(project(":depsconstraints")))
 
 	api(project(":model"))
+	api(project(":database"))
 
 	implementation(Libs.KotlinStdlib)
 	implementation(Libs.Coroutines)

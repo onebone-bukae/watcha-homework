@@ -8,6 +8,6 @@ data class TrackEntity(
 	@PrimaryKey(autoGenerate = true) val id: Int? = null,
 	val trackName: String,
 	val artistName: String,
-	val localArtworkPath: String?,
+	val artworkUrl: String?,
 	val collectionName: String
 )
