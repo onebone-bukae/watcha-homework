@@ -14,7 +14,9 @@ class TracksAdapter(
 	diffCallback = object: DiffUtil.ItemCallback<TrackEntry>() {
 		override fun areItemsTheSame(
 			oldItem: TrackEntry, newItem: TrackEntry
-		): Boolean = oldItem == newItem
+		): Boolean =
+			oldItem.artistName == newItem.artistName && oldItem.artworkUrl == newItem.artworkUrl &&
+				oldItem.trackName == newItem.trackName && newItem.collectionName == oldItem.collectionName
 
 		override fun areContentsTheSame(
 			oldItem: TrackEntry, newItem: TrackEntry
