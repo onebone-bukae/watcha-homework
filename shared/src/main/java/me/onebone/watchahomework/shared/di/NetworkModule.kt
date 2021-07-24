@@ -10,6 +10,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import me.onebone.watchahomework.shared.BuildConfig
 import me.onebone.watchahomework.shared.data.FavoritesDataSource
+import me.onebone.watchahomework.shared.data.FuelITunesDataSource
 import me.onebone.watchahomework.shared.data.ITunesDataSource
 import me.onebone.watchahomework.shared.data.ITunesService
 import me.onebone.watchahomework.shared.data.NetworkITunesDataSource
@@ -59,7 +60,7 @@ object NetworkModule {
 abstract class NetworkBindsModule {
 	@Binds
 	@Singleton
-	abstract fun bindITunesDataSource(dataSource: NetworkITunesDataSource): ITunesDataSource
+	abstract fun bindITunesDataSource(dataSource: FuelITunesDataSource): ITunesDataSource
 
 	@Binds
 	@Singleton

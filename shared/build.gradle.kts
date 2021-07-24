@@ -63,6 +63,11 @@ dependencies {
 	implementation(Libs.Retrofit)
 	implementation(Libs.RetrofitJsonAdapter)
 
+	// fuel
+	implementation(Libs.Fuel.Core)
+	implementation(Libs.Fuel.Android)
+	implementation(Libs.Fuel.JsonAdapter)
+
 	// paging library
 	implementation(Libs.Paging)
 

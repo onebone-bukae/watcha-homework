@@ -2,6 +2,8 @@ object Libs {
 	const val KotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib"
 	const val Coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
 
+	const val MultiDex = "androidx.multidex:multidex"
+
 	const val CoreKtx = "androidx.core:core-ktx"
 	const val AppCompat = "androidx.appcompat:appcompat"
 	const val Material = "com.google.android.material:material"
@@ -19,6 +21,12 @@ object Libs {
 	object Hilt {
 		const val Android = "com.google.dagger:hilt-android"
 		const val Compiler = "com.google.dagger:hilt-android-compiler"
+	}
+
+	object Fuel {
+		const val Core = "com.github.kittinunf.fuel:fuel"
+		const val Android = "com.github.kittinunf.fuel:fuel-android"
+		const val JsonAdapter = "com.github.kittinunf.fuel:fuel-kotlinx-serialization"
 	}
 
 	const val KotlinxSerializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json"

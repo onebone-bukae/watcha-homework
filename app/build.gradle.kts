@@ -15,6 +15,7 @@ android {
 		targetSdk = Versions.Sdk.Target
 		versionCode = 1
 		versionName = "1.0"
+		multiDexEnabled = true
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 		vectorDrawables {
@@ -52,6 +53,8 @@ dependencies {
 
 	implementation(Libs.KotlinStdlib)
 	implementation(Libs.Coroutines)
+
+	implementation(Libs.MultiDex)
 
 	implementation(Libs.CoreKtx)
 	implementation(Libs.AppCompat)
