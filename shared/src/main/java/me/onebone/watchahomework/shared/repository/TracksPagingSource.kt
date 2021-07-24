@@ -2,23 +2,17 @@ package me.onebone.watchahomework.shared.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
-import me.onebone.watchahomework.database.TrackEntity
+import me.onebone.watchahomework.model.Track
 import me.onebone.watchahomework.shared.usecase.GetTrackUseCase
-import me.onebone.watchahomework.shared.usecase.IsFavoriteUseCase
-import me.onebone.watchahomework.shared.util.toEntity
 import javax.inject.Inject
 
 class TracksPagingSource @Inject constructor(
 	private val getTrackUseCase: GetTrackUseCase,
-	private val isFavoriteUseCase: IsFavoriteUseCase
-): PagingSource<Int, TracksPagingSource.TrackAndFavorite>() {
-	override fun getRefreshKey(state: PagingState<Int, TrackAndFavorite>): Int? =
+): PagingSource<Int, Track>() {
+	override fun getRefreshKey(state: PagingState<Int, Track>): Int? =
 		state.anchorPosition
 
-	override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TrackAndFavorite> {
+	override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Track> {
 		val offset = params.key ?: 0
 		val limit = params.loadSize
 
@@ -26,23 +20,8 @@ class TracksPagingSource @Inject constructor(
 
 		val tracks = result.getOrElse { return LoadResult.Error(it) }
 
-		val composite = runCatching {
-			coroutineScope {
-				tracks.map {
-					async {
-						val isFavoriteResult = isFavoriteUseCase.invoke(it.toEntity())
-
-						TrackAndFavorite(
-							track = it.toEntity(),
-							isFavorite = isFavoriteResult.getOrThrow()
-						)
-					}
-				}
-			}
-		}.getOrElse { return LoadResult.Error(it) }
-
 		return LoadResult.Page(
-			data = composite.awaitAll(),
+			data = tracks,
 			// is this right prevKey?
 			prevKey = (offset - limit)
 				.coerceAtLeast(0)
@@ -54,14 +33,6 @@ class TracksPagingSource @Inject constructor(
 			itemsBefore = offset,
 		)
 	}
-
-	data class TrackAndFavorite(
-		val track: TrackEntity,
-		// PagingDataAdapter does not allow us to replace list entry instance,
-		// we should mark this as a mutable field to make the change visible to the user.
-		// Consider using observable read query provided by Room.
-		var isFavorite: Boolean
-	)
 }
 
 fun interface TracksPagingSourceFactory {
@@ -69,9 +40,8 @@ fun interface TracksPagingSourceFactory {
 }
 
 class TracksPagingSourceFactoryImpl @Inject constructor(
-	private val getTrackUseCase: GetTrackUseCase,
-	private val isFavoriteUseCase: IsFavoriteUseCase
+	private val getTrackUseCase: GetTrackUseCase
 ): TracksPagingSourceFactory {
 	override fun create(): TracksPagingSource =
-		TracksPagingSource(getTrackUseCase, isFavoriteUseCase)
+		TracksPagingSource(getTrackUseCase)
 }

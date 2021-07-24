@@ -51,9 +51,7 @@ class TrackListFragment: Fragment() {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
 				launch {
 					viewModel.tracks.collect {
-						adapter.submitData(it.map { composite ->
-							composite.toEntry()
-						})
+						// adapter.submitData(it)
 					}
 				}
 
