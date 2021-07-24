@@ -49,9 +49,9 @@ class TrackListFragment: Fragment() {
 		viewLifecycleOwner.lifecycleScope.launch {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
 				launch {
-					// [PagingDataAdapter.submitData] is a suspend function, so if we get
-					// a new Flow<PagingData<...>>, we should cancel the previous block
-					// thus we use [Flow<T>.collectLatest] here.
+					// [PagingDataAdapter.submitData] is a function that suspends until the
+					// PagingData is invalidated, so if we get a new Flow<PagingData<...>>,
+					// we should cancel the previous block thus we use [Flow<T>.collectLatest] here.
 					// Note, the PagingData may not have been invalidated when the block cancels.
 					viewModel.trackEntries.collectLatest { pagingFlow ->
 						pagingFlow.collect {
