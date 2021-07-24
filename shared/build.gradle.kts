@@ -59,10 +59,6 @@ dependencies {
 	// kotlinx.serialization
 	implementation(Libs.KotlinxSerializationJson)
 
-	// retrofit
-	implementation(Libs.Retrofit)
-	implementation(Libs.RetrofitJsonAdapter)
-
 	// fuel
 	implementation(Libs.Fuel.Core)
 	implementation(Libs.Fuel.Android)

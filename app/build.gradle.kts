@@ -74,7 +74,6 @@ dependencies {
 	implementation(Libs.Hilt.Android)
 	kapt(Libs.Hilt.Compiler)
 
-	implementation(Libs.RetrofitJsonAdapter)
 	implementation(Libs.KotlinxSerializationJson)
 
 	testImplementation("junit:junit:4.13.2")

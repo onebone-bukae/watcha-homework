@@ -16,16 +16,6 @@ interface ITunesDataSource {
 	suspend fun getTracks(offset: Int, limit: Int): List<Track>
 }
 
-class NetworkITunesDataSource @Inject constructor(
-	private val service: ITunesService
-): ITunesDataSource {
-	override suspend fun getTracks(offset: Int, limit: Int): List<Track> {
-		val response = service.search(offset = offset, limit = limit)
-
-		return response.results
-	}
-}
-
 class FuelITunesDataSource @Inject constructor(
 	private val json: Json
 ): ITunesDataSource {
