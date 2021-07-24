@@ -10,10 +10,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
-import androidx.paging.map
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 import me.onebone.watchahomework.databinding.FragmentTrackListBinding
 import me.onebone.watchahomework.ui.TracksAdapter
 import me.onebone.watchahomework.ui.toEntity
-import me.onebone.watchahomework.ui.toEntry
 
 @AndroidEntryPoint
 class TrackListFragment: Fragment() {
@@ -50,10 +49,14 @@ class TrackListFragment: Fragment() {
 		viewLifecycleOwner.lifecycleScope.launch {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
 				launch {
-					viewModel.tracks.collect {
-						adapter.submitData(it.map { composite ->
-							composite.toEntry()
-						})
+					// [PagingDataAdapter.submitData] is a suspend function, so if we get
+					// a new Flow<PagingData<...>>, we should cancel the previous block
+					// thus we use [Flow<T>.collectLatest] here.
+					// Note, the PagingData may not have been invalidated when the block cancels.
+					viewModel.trackEntries.collectLatest { pagingFlow ->
+						pagingFlow.collect {
+							adapter.submitData(it)
+						}
 					}
 				}
 

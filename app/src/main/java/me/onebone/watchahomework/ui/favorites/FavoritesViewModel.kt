@@ -15,8 +15,9 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
 	pagingSourceFactory: FavoritesPagingSourceFactory,
-	private val removeFavoriteUseCase: RemoveFavoriteUseCase
-): ViewModel() {
+	private val removeFavoriteUseCase: RemoveFavoriteUseCase,
+	favoritesViewModelDelegate: FavoritesViewModelDelegate
+): ViewModel(), FavoritesViewModelDelegate by favoritesViewModelDelegate {
 	val favorites = Pager(
 		config = PagingConfig(pageSize = 30, enablePlaceholders = false),
 		pagingSourceFactory = {
@@ -27,6 +28,7 @@ class FavoritesViewModel @Inject constructor(
 	fun removeFavorite(entity: TrackEntity) {
 		viewModelScope.launch {
 			removeFavoriteUseCase(entity)
+			emitFavoriteChangeEvent(FavoritesChangeSource.FavoritesList)
 		}
 	}
 }

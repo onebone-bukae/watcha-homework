@@ -11,12 +11,6 @@ data class TrackEntry(
 	var isFavorite: Boolean
 )
 
-fun TracksPagingSource.TrackAndFavorite.toEntry() =
-	TrackEntry(
-		trackName = track.trackName, collectionName = track.collectionName, artistName = track.artistName,
-		artworkUrl = track.artworkUrl, isFavorite = isFavorite
-	)
-
 fun TrackEntry.toEntity() =
 	TrackEntity(
 		trackName = trackName, collectionName = collectionName,
