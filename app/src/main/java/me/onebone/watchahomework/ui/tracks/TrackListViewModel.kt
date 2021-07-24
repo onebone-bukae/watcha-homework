@@ -51,8 +51,6 @@ class TrackListViewModel @Inject constructor(
 			refreshFavorites()
 
 			favoritesChangeFlow.collect {
-				if(it == FavoritesChangeSource.TrackList) return@collect
-
 				refreshFavorites()
 			}
 		}

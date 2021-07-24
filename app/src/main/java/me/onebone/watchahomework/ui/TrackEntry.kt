@@ -8,7 +8,7 @@ data class TrackEntry(
 	val collectionName: String,
 	val artistName: String,
 	val artworkUrl: String?,
-	var isFavorite: Boolean
+	val isFavorite: Boolean
 )
 
 fun TrackEntry.toEntity() =

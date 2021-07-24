@@ -1,5 +1,6 @@
 package me.onebone.watchahomework.ui
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.RatingBar
@@ -15,12 +16,24 @@ class TracksAdapter(
 		override fun areItemsTheSame(
 			oldItem: TrackEntry, newItem: TrackEntry
 		): Boolean =
-			oldItem.artistName == newItem.artistName && oldItem.artworkUrl == newItem.artworkUrl &&
+			oldItem.artistName == newItem.artistName &&
 				oldItem.trackName == newItem.trackName && newItem.collectionName == oldItem.collectionName
 
 		override fun areContentsTheSame(
 			oldItem: TrackEntry, newItem: TrackEntry
 		): Boolean = oldItem == newItem
+
+		override fun getChangePayload(oldItem: TrackEntry, newItem: TrackEntry): Any {
+			val diff = Bundle()
+
+			if(oldItem.isFavorite != newItem.isFavorite)
+				diff.putBoolean("isFavorite", newItem.isFavorite)
+
+			if(oldItem.artworkUrl != newItem.artworkUrl)
+				diff.putString("artworkUrl", newItem.artworkUrl)
+
+			return diff
+		}
 	}
 ) {
 	inner class ViewHolder(
@@ -35,12 +48,7 @@ class TracksAdapter(
 
 			binding.rbStar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { _, v, _ ->
 				val isFavorite = v == 1f
-
 				onStarToggled(entry, isFavorite)
-
-				// better idea?? possibly using flow?
-				// Room seems to support observable read queries for this purpose
-				entry.isFavorite = isFavorite
 			}
 		}
 	}
