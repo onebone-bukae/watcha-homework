@@ -22,6 +22,7 @@ import me.onebone.watchahomework.shared.usecase.IsFavoriteUseCase
 import me.onebone.watchahomework.shared.usecase.RemoveFavoriteUseCase
 import me.onebone.watchahomework.shared.util.toEntity
 import me.onebone.watchahomework.ui.TrackEntry
+import me.onebone.watchahomework.ui.favorites.FavoritesChangeSource
 import me.onebone.watchahomework.ui.favorites.FavoritesViewModelDelegate
 import javax.inject.Inject
 
@@ -50,6 +51,8 @@ class TrackListViewModel @Inject constructor(
 			refreshFavorites()
 
 			favoritesChangeFlow.collect {
+				if(it == FavoritesChangeSource.TrackList) return@collect
+
 				refreshFavorites()
 			}
 		}
@@ -75,14 +78,14 @@ class TrackListViewModel @Inject constructor(
 		// FIXME what if viewModelScope cancels before the use case completes its job?
 		viewModelScope.launch {
 			addFavoriteUseCase(track)
-			emitFavoriteChangeEvent()
+			emitFavoriteChangeEvent(FavoritesChangeSource.TrackList)
 		}
 	}
 
 	fun removeFavorite(track: TrackEntity) {
 		viewModelScope.launch {
 			removeFavoriteUseCase(track)
-			emitFavoriteChangeEvent()
+			emitFavoriteChangeEvent(FavoritesChangeSource.TrackList)
 		}
 	}
 }

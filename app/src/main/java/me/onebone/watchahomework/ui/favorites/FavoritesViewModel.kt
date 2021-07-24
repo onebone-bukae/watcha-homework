@@ -28,7 +28,7 @@ class FavoritesViewModel @Inject constructor(
 	fun removeFavorite(entity: TrackEntity) {
 		viewModelScope.launch {
 			removeFavoriteUseCase(entity)
-			emitFavoriteChangeEvent()
+			emitFavoriteChangeEvent(FavoritesChangeSource.FavoritesList)
 		}
 	}
 }
