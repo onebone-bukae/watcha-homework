@@ -56,13 +56,10 @@ dependencies {
 	implementation(Libs.CoreKtx)
 	implementation(Libs.AppCompat)
 	implementation(Libs.Material)
+	implementation(Libs.FragmentKtx)
 
 	// lifecycle
 	implementation(Libs.LifecycleRuntimeKtx)
-
-	// navigation component
-	implementation(Libs.Navigation.FragmentKtx)
-	implementation(Libs.Navigation.UiKtx)
 
 	// paging library
 	implementation(Libs.Paging)

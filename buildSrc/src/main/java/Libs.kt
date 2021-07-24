@@ -5,6 +5,7 @@ object Libs {
 	const val CoreKtx = "androidx.core:core-ktx"
 	const val AppCompat = "androidx.appcompat:appcompat"
 	const val Material = "com.google.android.material:material"
+	const val FragmentKtx = "androidx.fragment:fragment-ktx"
 
 	const val LifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx"
 
@@ -13,11 +14,6 @@ object Libs {
 		const val Compiler = "androidx.room:room-compiler"
 		const val Ktx = "androidx.room:room-ktx"
 		const val Paging = "androidx.room:room-paging"
-	}
-
-	object Navigation {
-		const val FragmentKtx = "androidx.navigation:navigation-fragment-ktx"
-		const val UiKtx = "androidx.navigation:navigation-ui-ktx"
 	}
 
 	object Hilt {

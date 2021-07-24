@@ -5,10 +5,10 @@ plugins {
 val appCompat = "1.3.0"
 val coreKtx = "1.6.0"
 val coroutines = "1.5.1"
+val fragmentKtx = "1.3.5"
 val glide = "4.11.0"
 val hilt = Versions.Hilt
 val material = "1.4.0"
-val navigation = Versions.Navigation
 val kotlin = Versions.Kotlin
 val kotlinxSerialization = "1.2.2"
 val lifecycleRuntimeKtx = "2.4.0-alpha02"
@@ -26,6 +26,7 @@ dependencies {
 		api("${Libs.CoreKtx}:$coreKtx")
 		api("${Libs.AppCompat}:$appCompat")
 		api("${Libs.Material}:$material")
+		api("${Libs.FragmentKtx}:$fragmentKtx")
 
 		// lifecycle
 		api("${Libs.LifecycleRuntimeKtx}:$lifecycleRuntimeKtx")
@@ -38,10 +39,6 @@ dependencies {
 
 		// kotlinx.serialization
 		api("${Libs.KotlinxSerializationJson}:$kotlinxSerialization")
-
-		// navigation component
-		api("${Libs.Navigation.FragmentKtx}:$navigation")
-		api("${Libs.Navigation.UiKtx}:$navigation")
 
 		// hilt
 		api("${Libs.Hilt.Android}:$hilt")
