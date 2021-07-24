@@ -52,7 +52,7 @@ class TrackListFragment: Fragment() {
 					// [PagingDataAdapter.submitData] is a suspend function, so if we get
 					// a new Flow<PagingData<...>>, we should cancel the previous block
 					// thus we use [Flow<T>.collectLatest] here.
-					// Note, the PagingData may not have invalidated when the block cancels.
+					// Note, the PagingData may not have been invalidated when the block cancels.
 					viewModel.trackEntries.collectLatest { pagingFlow ->
 						pagingFlow.collect {
 							adapter.submitData(it)
