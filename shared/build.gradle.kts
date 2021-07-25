@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-	compileSdk = 30
+	compileSdkVersion(Versions.Sdk.Compile)
 	buildToolsVersion = "30.0.3"
 
 	defaultConfig {
-		minSdk = Versions.Sdk.Min
-		targetSdk = Versions.Sdk.Target
+		minSdkVersion(Versions.Sdk.Min)
+		targetSdkVersion(Versions.Sdk.Target)
 		versionCode = 1
 		versionName = "1.0"
 
