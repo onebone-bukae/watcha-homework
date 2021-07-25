@@ -3,7 +3,6 @@ package me.onebone.watchahomework.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.RatingBar
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -46,9 +45,8 @@ class TracksAdapter(
 
 			binding.entry = entry
 
-			binding.rbStar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { _, v, _ ->
-				val isFavorite = v == 1f
-				onStarToggled(entry, isFavorite)
+			binding.toggleStar.setOnCheckedChangeListener { _, isChecked ->
+				onStarToggled(entry, isChecked)
 			}
 		}
 	}
