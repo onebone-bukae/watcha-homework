@@ -1,11 +1,11 @@
 # 왓챠 과제
 
 ## 모듈
-|
-\\--- `app` 앱 모듈
-\\--- `database` 로컬 저장을 위한 모델 및 데이터베이스 정의
-\\--- `model` 네트워크에서 얻어오기 위한 데이터 모델 정의
-\\--- `shared` Use Case, Repository, Data Source 등 정의
+.
++-- `app` 앱 모듈
++-- `database` 로컬 저장을 위한 모델 및 데이터베이스 정의
++-- `model` 네트워크에서 얻어오기 위한 데이터 모델 정의
++-- `shared` Use Case, Repository, Data Source 등 정의
 
 
 ## 오픈소스 라이브러리
