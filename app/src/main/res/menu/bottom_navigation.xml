@@ -2,10 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
 		android:id="@+id/menu_tracks"
-		android:title="@string/track_list" />
-	<!-- android:icon -->
+		android:title="@string/track_list"
+		android:icon="@drawable/ic_baseline_audiotrack_24" />
 
 	<item
 		android:id="@+id/menu_favorites"
-		android:title="@string/favorites_list" />
+		android:title="@string/favorites_list"
+		android:icon="@drawable/ic_baseline_star_24" />
 </menu>
